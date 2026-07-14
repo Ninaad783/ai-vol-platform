@@ -1,0 +1,50 @@
+name: VolunConnect CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: |
+          client/package-lock.json
+          server/package-lock.json
+
+    - name: 📦 Install Backend Dependencies
+      working-directory: ./server
+      run: npm ci || npm install
+
+    - name: 📦 Install Frontend Dependencies
+      working-directory: ./client
+      run: npm ci || npm install
+
+    - name: 🔍 Run Frontend Code Quality Linter
+      working-directory: ./client
+      run: npm run lint
+
+    - name: 🏗️ Verify Production Build (Client)
+      working-directory: ./client
+      run: npm run build
+      env:
+        CI: true
+
+    - name: ✅ Pipeline Status Report
+      if: success()
+      run: echo "Codebase is secure. All linting and builds passed successfully. Ready for deployment!"

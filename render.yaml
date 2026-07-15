@@ -19,8 +19,11 @@ services:
     env: python
     plan: free
     rootDir: ai_service
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install setuptools wheel && pip install -r requirements.txt
     startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
 
   # React Frontend (Vite)
   - type: web

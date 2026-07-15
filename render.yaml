@@ -19,3 +19,17 @@ services:
     rootDir: ai_service
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
+
+  # React Frontend (Vite)
+  - type: web
+    name: volunconnect-client
+    env: static
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: volunconnect-server
+          envVarKey: RENDER_EXTERNAL_URL

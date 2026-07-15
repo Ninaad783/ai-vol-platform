@@ -38,3 +38,8 @@ services:
           type: web
           name: volunconnect-server
           envVarKey: RENDER_EXTERNAL_URL
+      - key: VITE_AI_URL
+        fromService:
+          type: web
+          name: volunconnect-ai-service
+          envVarKey: RENDER_EXTERNAL_URL

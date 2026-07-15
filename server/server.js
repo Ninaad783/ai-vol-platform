@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 // 1. Enable Global CORS
 app.use(
   cors({
-    origin: "http://localhost:5173", // Primary Vite dev port
+    origin: true, // Allow all origins
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -18,7 +18,7 @@ app.use(
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  if (origin && (origin === "http://localhost:5173" || origin === "http://localhost:5174")) {
+  if (origin) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");

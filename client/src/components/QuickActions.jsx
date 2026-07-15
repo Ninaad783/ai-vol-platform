@@ -39,19 +39,10 @@ function QuickActions() {
       </h2>
 
       <div className="grid grid-cols-2 gap-4">
-        {/* 1. Generate Event */}
+        {/* 1. Create Event */}
         <button 
           onClick={handleCreateClick}
-          className="flex flex-col items-center justify-center gap-2 h-24 bg-emerald-50 hover:bg-emerald-100/80 text-emerald-700 rounded-2xl border border-emerald-100 hover:border-emerald-200 transition-all font-bold text-sm cursor-pointer shadow-sm active:scale-95"
-        >
-          <FaMagic className="text-lg" />
-          <span>Generate Event</span>
-        </button>
-
-        {/* 2. Create Event */}
-        <button 
-          onClick={handleCreateClick}
-          className="flex flex-col items-center justify-center gap-2 h-24 bg-blue-50 hover:bg-blue-100/80 text-blue-700 rounded-2xl border border-blue-100 hover:border-blue-200 transition-all font-bold text-sm cursor-pointer shadow-sm active:scale-95"
+          className="col-span-2 flex flex-col items-center justify-center gap-2 h-24 bg-blue-50 hover:bg-blue-100/80 text-blue-700 rounded-2xl border border-blue-100 hover:border-blue-200 transition-all font-bold text-sm cursor-pointer shadow-sm active:scale-95"
         >
           <FaCalendarPlus className="text-lg" />
           <span>Create Event</span>

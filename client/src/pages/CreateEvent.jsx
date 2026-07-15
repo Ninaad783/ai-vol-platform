@@ -52,7 +52,7 @@ function CreateEvent() {
     showNotification("Gemini is analyzing title and generating logistics... 🧠", "success");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/ai/generate-details", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/ai/generate-details`, {
         title: formData.title,
       });
 
@@ -77,7 +77,7 @@ function CreateEvent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/events", formData);
+      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events`, formData);
       
       showNotification("Event Deployed Successfully to Cloud Cluster! 🚀", "success");
 

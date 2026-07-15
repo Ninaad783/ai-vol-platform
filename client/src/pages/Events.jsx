@@ -57,7 +57,7 @@ function Events() {
 
   const fetchEvents = () => {
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events`)
       .then((res) => setEvents(res.data))
       .catch((err) => console.log(err));
   };
@@ -68,7 +68,7 @@ function Events() {
 
   const executeDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/events/${deleteModal.targetId}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events/${deleteModal.targetId}`);
       setEvents((prev) => prev.filter((e) => e._id !== deleteModal.targetId));
       setDeleteModal({ show: false, targetId: null });
       showNotification("Event cleared successfully from cluster 🚀");
@@ -87,7 +87,7 @@ function Events() {
 
     setJoinLoading(true);
     try {
-      const response = await axios.post(`http://localhost:5000/api/events/${activeDetails._id}/join`, joinData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events/${activeDetails._id}/join`, joinData);
       showNotification(response.data.message);
       
       // Append new signup locally for real-time roster updates

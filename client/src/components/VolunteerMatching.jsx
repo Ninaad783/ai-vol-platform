@@ -18,7 +18,7 @@ function VolunteerMatching() {
     hasFetched.current = true;
 
     axios
-      .post("http://localhost:5000/api/recommend/suggest-matches", { skills })
+      .post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/recommend/suggest-matches`, { skills })
       .then((res) => {
         if (res.data && res.data.matches) {
           setMatches(res.data.matches);

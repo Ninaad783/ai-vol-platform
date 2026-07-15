@@ -25,7 +25,7 @@ function AIAssistant() {
     setLoading(true);
     
     try {
-      const res = await axios.post("http://localhost:5000/api/ai/chat", { message: query });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/ai/chat`, { message: query });
       setMessages((prev) => [...prev, { role: "bot", text: res.data.reply }]);
     } catch (err) {
       console.error("Dashboard AI assistant communication failure:", err);

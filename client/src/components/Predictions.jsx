@@ -9,7 +9,7 @@ function Predictions() {
   useEffect(() => {
     // 1. Fetch live events from your Node server
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events`)
       .then(async (res) => {
         const activeEvents = res.data || [];
         setEvents(activeEvents);
@@ -18,7 +18,7 @@ function Predictions() {
         const predictionMap = {};
         for (const event of activeEvents) {
           try {
-            const mlResponse = await axios.post("http://localhost:8000/api/predict", {
+            const mlResponse = await axios.post(`${import.meta.env.VITE_AI_URL || "http://localhost:8000"}/api/predict`, {
               category: event.category,
               location: event.location,
               volunteersNeeded: event.volunteersNeeded,

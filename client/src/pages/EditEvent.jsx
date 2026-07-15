@@ -35,7 +35,7 @@ function EditEvent() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/events/${id}`)
+      .get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events/${id}`)
       .then((res) => {
         const formattedDate = res.data.eventDate ? res.data.eventDate.split("T")[0] : "";
         setFormData({
@@ -63,7 +63,7 @@ function EditEvent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/events/${id}`, formData);
+      await axios.put(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events/${id}`, formData);
       showNotification("Event Updated Successfully! ✏️", "success");
       setTimeout(() => navigate("/events"), 1500);
     } catch (error) {

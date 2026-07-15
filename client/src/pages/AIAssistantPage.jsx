@@ -26,7 +26,7 @@ function AIAssistantPage() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/ai/chat", { message: query });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/ai/chat`, { message: query });
       
       // Check if backend responded from fallback or gemini
       if (res.data.source === "fallback") {

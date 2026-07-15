@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 function UpcomingEvents({ events = [], loading }) {
-  
+  const navigate = useNavigate();
+
   // Handled loading state block directly to prevent rendering layout glitches
   if (loading) {
     return (
@@ -19,7 +22,10 @@ function UpcomingEvents({ events = [], loading }) {
             Upcoming Events
           </h2>
 
-          <button className="text-green-600 font-semibold text-sm hover:text-green-700 transition-colors">
+          <button 
+            onClick={() => navigate('/events')}
+            className="text-green-600 font-semibold text-sm hover:text-green-700 transition-colors"
+          >
             View All
           </button>
         </div>
@@ -46,7 +52,10 @@ function UpcomingEvents({ events = [], loading }) {
                   </p>
                 </div>
 
-                <button className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-md transition-all active:scale-95">
+                <button 
+                  onClick={() => navigate('/events')}
+                  className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-md transition-all active:scale-95"
+                >
                   View
                 </button>
               </div>

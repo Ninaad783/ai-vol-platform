@@ -16,7 +16,7 @@ function Dashboard() {
   // Master synchronization fetch data pipeline
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/events`)
       .then((res) => {
         setEvents(res.data || []);
       })

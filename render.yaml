@@ -3,6 +3,7 @@ services:
   - type: web
     name: volunconnect-server
     env: node
+    plan: free
     rootDir: server
     buildCommand: npm install
     startCommand: node server.js
@@ -16,6 +17,7 @@ services:
   - type: web
     name: volunconnect-ai-service
     env: python
+    plan: free
     rootDir: ai_service
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
